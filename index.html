@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vantage Decom | Toronto IT Fleet Refresh Specialists</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-weight: 900;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+            color: #f5f5f5;
+            line-height: 1;
+        }
+
+        .logo-sub {
+            font-weight: 700;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.6em;
+            color: #52525b;
+            margin-left: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #a1a1aa;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #06b6d4;
+        }
+
+        .btn-primary {
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: #0a0a0a;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 40px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(6, 182, 212, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 22px;
+            color: #a1a1aa;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-hero {
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: #0a0a0a;
+            font-weight: 700;
+            font-size: 18px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(6, 182, 212, 0.4);
+        }
+
+        /* Stats */
+        .stats {
+            padding: 80px 40px;
+            background: rgba(10, 10, 10, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 60px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            color: #06b6d4;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #71717a;
+            font-weight: 500;
+        }
+
+        /* Process Section */
+        .section {
+            padding: 120px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 80px;
+            background: linear-gradient(135deg, #ffffff 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .process-card {
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(24, 24, 27, 0.8) 0%, rgba(39, 39, 42, 0.4) 100%);
+            border: 1px solid rgba(6, 182, 212, 0.1);
+            border-radius: 16px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .process-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(6, 182, 212, 0.3);
+        }
+
+        .process-number {
+            width: 60px;
+            height: 60px;
+            background: rgba(6, 182, 212, 0.1);
+            border: 2px solid #06b6d4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 900;
+            color: #06b6d4;
+            margin-bottom: 24px;
+        }
+
+        .process-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .process-card p {
+            color: #a1a1aa;
+            line-height: 1.7;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(24, 24, 27, 0.8) 0%, rgba(39, 39, 42, 0.4) 100%);
+            border: 1px solid rgba(6, 182, 212, 0.1);
+            border-radius: 16px;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(6, 182, 212, 0.3);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #06b6d4;
+        }
+
+        .feature-card p {
+            color: #a1a1aa;
+            line-height: 1.7;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            padding: 120px 40px;
+            background: linear-gradient(135deg, rgba(24, 24, 27, 0.5) 0%, rgba(10, 10, 10, 0.8) 100%);
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(24, 24, 27, 0.8);
+            padding: 60px;
+            border-radius: 20px;
+            border: 1px solid rgba(6, 182, 212, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #e4e4e7;
+            font-size: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 16px;
+            background: rgba(10, 10, 10, 0.6);
+            border: 2px solid rgba(6, 182, 212, 0.2);
+            border-radius: 10px;
+            color: #f5f5f5;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #06b6d4;
+            background: rgba(10, 10, 10, 0.9);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #a1a1aa;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: #0a0a0a;
+            font-weight: 700;
+            font-size: 18px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(10, 10, 10, 0.8);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-text {
+            text-align: right;
+        }
+
+        .footer-text p {
+            color: #71717a;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #06b6d4;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .form-container {
+                padding: 40px 30px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-text {
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            padding: 20px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 2px solid #22c55e;
+            border-radius: 10px;
+            color: #22c55e;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" onclick="scrollToTop()">
+                <div class="logo-text">
+                    <span class="logo-main">Vantage</span>
+                    <span class="logo-sub">Decom</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#process">Process</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+                <button class="btn-primary" onclick="scrollToContact()">Schedule Pickup</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero fade-in">
+        <div class="hero-content">
+            <h1>Secure IT Asset Decommissioning for Toronto Enterprises</h1>
+            <p>White-glove fleet refresh services with certified data destruction, complete chain of custody, and zero-landfill commitment.</p>
+            <button class="btn-hero" onclick="scrollToContact()">Get Started Today</button>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div>
+                <div class="stat-number">$0</div>
+                <div class="stat-label">Pickup Cost</div>
+            </div>
+            <div>
+                <div class="stat-number">GTA</div>
+                <div class="stat-label">Coverage</div>
+            </div>
+            <div>
+                <div class="stat-number">NIST</div>
+                <div class="stat-label">Security</div>
+            </div>
+            <div>
+                <div class="stat-number">ISO</div>
+                <div class="stat-label">Compliant</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="section">
+        <h2 class="section-title">Our Process</h2>
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-number">1</div>
+                <h3>Asset Assessment</h3>
+                <p>We evaluate your IT hardware inventory, timeline, and specific requirements to create a customized decommissioning plan.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">2</div>
+                <h3>Secure Pickup</h3>
+                <p>Our certified team arrives with chain-of-custody documentation and secure transport to collect your equipment.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">3</div>
+                <h3>Data Destruction</h3>
+                <p>NIST 800-88 compliant sanitization ensures all data is permanently destroyed with certificate of destruction provided.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">4</div>
+                <h3>Certified Recycling</h3>
+                <p>R2 and e-Stewards certified processing recovers valuable materials while preventing environmental harm.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <h2 class="section-title">Why Choose Vantage Decom</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Data Security First</h3>
+                <p>NIST 800-88 compliant data sanitization with certificates of destruction for complete audit trail and compliance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h3>White Glove Service</h3>
+                <p>Professional logistics team handles pickup, inventory, tracking, and documentation for seamless fleet refreshes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✅</div>
+                <h3>Full Compliance</h3>
+                <p>R2, e-Stewards, and ISO 14001 certified facilities ensure regulatory compliance and environmental responsibility.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Chain of Custody</h3>
+                <p>Complete tracking from pickup to final disposition with detailed reporting for your records and audits.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏢</div>
+                <h3>Enterprise Scale</h3>
+                <p>Handle data center closures, office moves, and ongoing ITAD programs with consistent quality and service.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">♻️</div>
+                <h3>Zero Landfill</h3>
+                <p>98% material recovery rate with certified downstream vendors ensures responsible end-of-life processing.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Schedule Your IT Asset Pickup</h2>
+        <div class="form-container">
+            <div id="successMessage" class="success-message">
+                Thank you! We'll contact you within 24 hours to schedule your pickup.
+            </div>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="companyName">Company Name *</label>
+                    <input type="text" id="companyName" name="companyName" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactName">Contact Name *</label>
+                    <input type="text" id="contactName" name="contactName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Pickup Address *</label>
+                    <input type="text" id="address" name="address" placeholder="Street, City, Province" required>
+                </div>
+                <div class="form-group">
+                    <label for="unitCount">Approximate Unit Count *</label>
+                    <select id="unitCount" name="unitCount" required>
+                        <option value="">Select quantity...</option>
+                        <option value="1-10">1-10 units</option>
+                        <option value="11-50">11-50 units</option>
+                        <option value="51-100">51-100 units</option>
+                        <option value="100+">100+ units</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Hardware Types *</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="hardware" value="laptops"> Laptops
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="hardware" value="desktops"> Desktops
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="hardware" value="servers"> Servers
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="hardware" value="monitors"> Monitors
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="hardware" value="phones"> Phones/Tablets
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="hardware" value="networking"> Networking
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="hardware" value="other" id="hardwareOther"> Other
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group" id="otherHardwareGroup" style="display: none;">
+                    <label for="otherHardware">Please specify other hardware</label>
+                    <input type="text" id="otherHardware" name="otherHardware" placeholder="e.g., Printers, UPS systems, etc.">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label" style="font-size: 16px; margin-top: 10px;">
+                        <input type="checkbox" id="dataRemoval" name="dataRemoval" value="yes">
+                        <span style="margin-left: 8px;">Certified data destruction required</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="timeline">Preferred Timeline *</label>
+                    <select id="timeline" name="timeline" required>
+                        <option value="">Select timeline...</option>
+                        <option value="urgent">Within 48 hours</option>
+                        <option value="week">Within 1 week</option>
+                        <option value="month">Within 1 month</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Details</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your specific requirements, data destruction needs, or any questions..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Request Pickup</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo" onclick="scrollToTop()">
+                <div class="logo-text">
+                    <span class="logo-main">Vantage</span>
+                    <span class="logo-sub">Decom</span>
+                </div>
+            </div>
+            <div class="footer-text">
+                <p>© 2026 Vantage Decom. Toronto IT Fleet Refresh Specialists.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy</a>
+                    <a href="#terms">Terms</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your credentials
+        (function() {
+            emailjs.init("yQAhuz32I5HvZ1BQP");
+        })();
+
+        // Smooth scrolling
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/hide "Other hardware" field
+        document.getElementById('hardwareOther').addEventListener('change', function() {
+            const otherGroup = document.getElementById('otherHardwareGroup');
+            if (this.checked) {
+                otherGroup.style.display = 'block';
+            } else {
+                otherGroup.style.display = 'none';
+                document.getElementById('otherHardware').value = '';
+            }
+        });
+
+        // Form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get hardware types
+            const hardwareCheckboxes = document.querySelectorAll('input[name="hardware"]:checked');
+            let hardwareTypes = Array.from(hardwareCheckboxes).map(cb => cb.value).join(', ');
+            
+            // Add "Other" specification if checked
+            if (document.getElementById('hardwareOther').checked) {
+                const otherHardware = document.getElementById('otherHardware').value;
+                if (otherHardware) {
+                    hardwareTypes = hardwareTypes.replace('other', `other (${otherHardware})`);
+                }
+            }
+
+            // Prepare email data
+            const templateParams = {
+                company_name: document.getElementById('companyName').value,
+                contact_name: document.getElementById('contactName').value,
+                from_email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                unit_count: document.getElementById('unitCount').value,
+                hardware_types: hardwareTypes,
+                data_removal: document.getElementById('dataRemoval').checked ? 'Yes - Certified data destruction required' : 'No',
+                timeline: document.getElementById('timeline').value,
+                message: document.getElementById('message').value
+            };
+
+            // Send email via EmailJS
+            emailjs.send('service_uj4sj68', 'template_r2nrmwt', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    document.getElementById('successMessage').classList.add('show');
+                    document.getElementById('contactForm').reset();
+                    setTimeout(() => {
+                        document.getElementById('successMessage').classList.remove('show');
+                    }, 5000);
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    alert('Sorry, there was an error sending your request. Please try again or email us directly.');
+                });
+        });
+    </script>
+</body>
+</html>
